@@ -1,0 +1,4 @@
+# NextJS
+.next 
+/node_modules 
+.env
