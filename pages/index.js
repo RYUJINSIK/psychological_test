@@ -29,7 +29,6 @@ const Index = () => {
 
 	const onSubmitAction = (e) => {
 		const regex = /^[가-힣|a-z|A-Z|]+$/; //정규식
-		e.preventDefault();
 
 		if (regex.test(user.name.replace(' ', ''))) {
 			localStorage.setItem('userData', JSON.stringify(user));
@@ -51,7 +50,7 @@ const Index = () => {
 	};
 	const mainDiv = {
 		padding: '30px',
-		width: '400px',
+		width: '500px',
 		border: '1px solid #8f8377',
 		borderRadius: '10px',
 		display: 'flex',
