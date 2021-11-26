@@ -2,38 +2,49 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/Router';
 import ProgressBar from '../components/ProgressBar';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Card, Popup, Segment, Message, Icon } from 'semantic-ui-react';
+import { Button, Card, Popup, Confirm, Message, Icon } from 'semantic-ui-react';
 
 const examExample = () => {
 	const router = useRouter();
 	const [a1Color, setA1Color] = useState('white');
 	const [a2Color, setA2Color] = useState('white');
 	const [nextVal, setNextVal] = useState(false);
+	const [confirm, setConfirm] = useState(false);
+
+	const user = JSON.parse(localStorage.getItem('userData'));
 
 	const onClickAnswer = (e) => {
 		if (e.target.value === 'a1') {
 			setA1Color('blue');
 			setA2Color('white');
+			setNextVal(true);
 		} else if (e.target.value === 'a2') {
 			setA2Color('green');
 			setA1Color('white');
+			setNextVal(true);
 		}
-		setNextVal(true);
 	};
 
+	const confirmToggle = (e) => {
+		if (confirm === true) {
+			setConfirm(false);
+		} else {
+			setConfirm(true);
+		}
+	};
 	const onSubmitAction = (e) => {
 		router.push('/examProgress');
 	};
 
 	const wrapper = {
-		padding: '50px',
+		padding: '20px',
 		justifyContent: 'center',
 		alignItems: 'flex-start',
 		minHeight: '100vh',
 		display: 'flex',
 	};
 	const mainDiv = {
-		width: '80%',
+		width: '70%',
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'center',
@@ -49,14 +60,14 @@ const examExample = () => {
 		width: '20px',
 		height: '20px',
 	};
-
-	const startBtnColor = {
-		backgroundColor: '#d6d2ff',
+	const confirmBtn = {
+		width: '400px',
+		fontSize: '1.3em',
 	};
 
 	const info = [
 		'직업과 관련된 두개의 가치 중에서 자기에게 더 중요한 가치에 표시하세요.',
-		'가치의 뜻을 잘 모르겠다면 문항옆 [?] 아이콘에 있는가치의 설명을 확인하고 하나를  선택해주세요.',
+		'가치의 뜻을 잘 모르겠다면 문항옆  [ ? ]  아이콘에 있는가치의 설명을 확인하고 하나를  선택해주세요.',
 	];
 	return (
 		<div style={wrapper}>
@@ -106,18 +117,30 @@ const examExample = () => {
 				</Card>
 
 				<Button
-					style={startBtnColor}
+					style={{ backgroundColor: '#d6d2ff' }}
 					animated
-					onClick={onSubmitAction}
+					onClick={confirmToggle}
 					type="submit"
 					size="huge"
 					disabled={nextVal ? false : true}
+					// onClick={onSubmitAction} // Confirm 에러로 임시활성화
 				>
 					<Button.Content visible>검사시작</Button.Content>
 					<Button.Content hidden>
 						<Icon name="arrow right" />
 					</Button.Content>
 				</Button>
+				<Confirm
+					open={confirm}
+					content={`성별 : ${
+						user.gender === '100323' ? '남자' : '여자'
+					} / 이름 : ${user.name} 님 검사를 시작합니다`}
+					confirmButton="검사시작"
+					cancelButton="취소"
+					onCancel={confirmToggle}
+					value="cancel"
+					onConfirm={onSubmitAction}
+				/>
 			</div>
 		</div>
 	);

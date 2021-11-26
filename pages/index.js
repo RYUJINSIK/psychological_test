@@ -7,17 +7,19 @@ const Index = () => {
 	const router = useRouter();
 	const [maleColor, setMaleColor] = useState('white');
 	const [femaleColor, setFemaleColor] = useState('white');
+
 	const [user, setUser] = useState({
 		name: '',
 		gender: '',
+		date: new Date().getTime(),
 	});
 
 	const onChangeAction = (e) => {
 		if (e.type === 'click') {
-			if (e.target.value === 'male') {
+			if (e.target.value === '100323') {
 				setMaleColor('blue');
 				setFemaleColor('white');
-			} else {
+			} else if (e.target.value === '100324') {
 				setFemaleColor('red');
 				setMaleColor('white');
 			}
@@ -57,16 +59,26 @@ const Index = () => {
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center',
+		backgroundColor: '#F7FEFF',
 	};
 
 	const startBtnColor = {
 		backgroundColor: '#d6d2ff',
 	};
 
+	const testIcon = {
+		marginBottom: '-8px',
+		width: '35px',
+		height: '35px',
+	};
+
 	return (
 		<div style={wrapper}>
 			<div style={mainDiv}>
-				<h1>직업가치관검사</h1>
+				<h1>
+					직업가치관검사 &nbsp;&nbsp;
+					<img src="/images/test.png" style={testIcon} />
+				</h1>
 				<br />
 				<Input
 					placeholder="이름을 입력하세요"
@@ -81,19 +93,21 @@ const Index = () => {
 					<Button
 						color={maleColor}
 						name="gender"
-						value="male"
+						value="100323"
 						onClick={onChangeAction}
 					>
-						남성
+						남성 &nbsp;&nbsp;
+						<Icon name="male" />
 					</Button>
 					<Button.Or />
 					<Button
 						color={femaleColor}
 						name="gender"
-						value="female"
+						value="100324"
 						onClick={onChangeAction}
 					>
-						여성
+						여성 &nbsp;&nbsp;
+						<Icon name="female" />
 					</Button>
 				</Button.Group>
 				<br />
