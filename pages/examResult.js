@@ -234,21 +234,6 @@ const Result = () => {
 					<h2>직업가치관결과</h2>
 
 					<Table celled>
-						{result[0].num} : {result[0].value}
-						<br />
-						{result[1].num} : {result[1].value}
-						<br />
-						{result[2].num} : {result[2].value}
-						<br />
-						{result[3].num} : {result[3].value}
-						<br />
-						{result[4].num} : {result[4].value}
-						<br />
-						{result[5].num} : {result[5].value}
-						<br />
-						{result[6].num} : {result[6].value}
-						<br />
-						{result[7].num} : {result[7].value}
 						<p>
 							<br />
 							&nbsp;&nbsp;&nbsp;&nbsp;직업생활과 관련하여 {user.name}님은{' '}
