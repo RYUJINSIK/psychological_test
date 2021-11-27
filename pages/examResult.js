@@ -86,8 +86,8 @@ const Result = () => {
 			.then(({ data }) => {
 				setExamResult(data.RESULT);
 			})
-			.catch((error) => {
-				console.log(error);
+			.catch((err) => {
+				console.log(err);
 			});
 	};
 
