@@ -11,7 +11,10 @@ const examExample = () => {
 	const [nextVal, setNextVal] = useState(false);
 	const [confirm, setConfirm] = useState(false);
 
-	const user = JSON.parse(localStorage.getItem('userData'));
+	let user = {};
+	if (typeof window !== 'undefined') {
+		user = JSON.parse(localStorage.getItem('userData'));
+	}
 
 	const onClickAnswer = (e) => {
 		if (e.target.value === 'a1') {

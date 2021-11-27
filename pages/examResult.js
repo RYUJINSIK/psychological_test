@@ -18,8 +18,13 @@ Chart.register(CategoryScale);
 
 const Result = () => {
 	const router = useRouter();
-	const user = JSON.parse(localStorage.getItem('userData'));
-	const parseAnswer = JSON.parse(localStorage.getItem('answerData'));
+
+	let user = {};
+	let parseAnswer = {};
+	if (typeof window !== 'undefined') {
+		user = JSON.parse(localStorage.getItem('userData'));
+		parseAnswer = JSON.parse(localStorage.getItem('answerData'));
+	}
 
 	const [result, setResult] = useState();
 	const [jobResult, setJobResult] = useState();
