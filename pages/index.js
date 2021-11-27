@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Icon, Input, Popup } from 'semantic-ui-react';
+import { Button, Icon, Input, Label } from 'semantic-ui-react';
 
 const Index = () => {
 	const router = useRouter();
 	const [maleColor, setMaleColor] = useState('white');
 	const [femaleColor, setFemaleColor] = useState('white');
+	const [labelVal, setLabelVal] = useState('none');
 
 	const [user, setUser] = useState({
 		name: '',
@@ -27,6 +28,7 @@ const Index = () => {
 
 		const { name, value } = e.target;
 		setUser({ ...user, [name]: value });
+		setLabelVal('none');
 	};
 
 	const onSubmitAction = (e) => {
@@ -36,13 +38,9 @@ const Index = () => {
 			localStorage.setItem('userData', JSON.stringify(user));
 			router.push('/examExample');
 		} else {
-			alert('이름을 정확하게 입력해주세요.');
+			setLabelVal('block');
 		}
 	};
-
-	// useEffect(() => {
-	//   console.log(user)
-	// },[user])
 
 	const wrapper = {
 		display: 'flex',
@@ -87,6 +85,10 @@ const Index = () => {
 					value={user.name}
 					onChange={onChangeAction}
 				/>
+				<Label basic color="red" pointing style={{ display: labelVal }}>
+					<Icon name="warning circle" />
+					이름을 정확하게 입력해주세요.
+				</Label>
 				<br />
 
 				<Button.Group>

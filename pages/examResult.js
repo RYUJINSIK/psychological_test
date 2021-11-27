@@ -118,28 +118,18 @@ const Result = () => {
 		const score = data.result.wonScore.split(' ').filter((x) => x);
 
 		const scoreResult = score.map((x) => {
-			const split_data = x.split('=');
-			return { num: split_data[0], value: parseInt(split_data[1]) };
+			const split_score = x.split('=');
+			return { num: split_score[0], value: parseInt(split_score[1]) };
 		});
 
-		setChartData(() => {
-			let chartVal = { ...chartData };
-			chartVal.datasets[0].data = scoreResult.map((x) => {
-				return x.value;
-			});
-			return chartVal;
+		scoreResult.sort((a, b) => {
+			return b.value - a.value;
 		});
 
-		const filterNumber = scoreResult
-			.filter(
-				(arr, index, callback) =>
-					index === callback.findIndex((t) => t.value === arr.value),
-			)
-			.sort((a, b) => b.value - a.value);
-
-		setResult(filterNumber);
-		console.log(filterNumber);
-		const [value1, value2] = [filterNumber[0].num, filterNumber[1].num];
+		setResult(scoreResult);
+		const [value1, value2] = [scoreResult[0].num, scoreResult[1].num];
+		console.log(result);
+		console.log(value1, value2);
 
 		const jobList = await axios.get(
 			`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${value1}&no2=${value2}`,
@@ -175,6 +165,14 @@ const Result = () => {
 				majorObject[nowArr[2]].push(nowArr[1]);
 			});
 			return majorObject;
+		});
+
+		setChartData(() => {
+			let chartVal = { ...chartData };
+			chartVal.datasets[0].data = scoreResult.map((x) => {
+				return x.value;
+			});
+			return chartVal;
 		});
 		setInit(true);
 	};
@@ -244,15 +242,21 @@ const Result = () => {
 					<Table celled>
 						<p>
 							<br />
-							{'  '}직업생활과 관련하여{user.name}님은{' '}
-							{questionInfo[result[0].num]}
-							(와)과 {questionInfo[result[1].num]}(을)를 가장 중요하게
-							생각합니다.
+							&nbsp;&nbsp;&nbsp;&nbsp;직업생활과 관련하여 {user.name}님은{' '}
+							<Label color="blue">{questionInfo[result[0].num]}</Label>
+							(와)과 <Label color="blue">{questionInfo[result[1].num]}</Label>
+							(을)를 가장 중요하게 생각합니다.
 							<br />
 							<br />
-							{'  '}반면에 {questionInfo[result[result.length - 1].num]},{' '}
-							{questionInfo[result[result.length - 2].num]}은 상대적으로 덜
-							중요하게 생각합니다.
+							&nbsp;&nbsp;&nbsp;&nbsp;반면에{' '}
+							<Label color="blue">
+								{questionInfo[result[result.length - 1].num]}
+							</Label>
+							,{' '}
+							<Label color="blue">
+								{questionInfo[result[result.length - 2].num]}
+							</Label>
+							은 상대적으로 덜 중요하게 생각합니다.
 							<br />
 							<br />
 						</p>
