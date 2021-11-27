@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/Router';
+import { useRouter } from 'next/router';
 import ProgressBar from '../components/ProgressBar';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Card, Popup, Confirm, Message, Icon } from 'semantic-ui-react';

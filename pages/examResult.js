@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/Router';
+import { useRouter } from 'next/router';
 import axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
 import { Bar } from 'react-chartjs-2';

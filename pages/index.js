@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/Router';
+import { useRouter } from 'next/router';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Icon, Input, Popup } from 'semantic-ui-react';
 
