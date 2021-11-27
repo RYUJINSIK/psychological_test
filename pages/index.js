@@ -8,6 +8,7 @@ const Index = () => {
 	const [maleColor, setMaleColor] = useState('white');
 	const [femaleColor, setFemaleColor] = useState('white');
 	const [labelVal, setLabelVal] = useState('none');
+	const [genderVal, setGenderVal] = useState('block');
 
 	const [user, setUser] = useState({
 		name: '',
@@ -25,6 +26,8 @@ const Index = () => {
 				setMaleColor('white');
 			}
 		}
+
+		setGenderVal('none');
 
 		const { name, value } = e.target;
 		setUser({ ...user, [name]: value });
@@ -112,6 +115,11 @@ const Index = () => {
 						<Icon name="female" />
 					</Button>
 				</Button.Group>
+				<Label basic color="blue" pointing style={{ display: genderVal }}>
+					<Icon name="male" />
+					성별을 선택해주세요 &nbsp;
+					<Icon name="female" />
+				</Label>
 				<br />
 				<Button
 					style={startBtnColor}
