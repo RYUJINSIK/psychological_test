@@ -7,8 +7,6 @@ import axios from 'axios';
 import { allowedStatusCodes } from 'next/dist/lib/load-custom-routes';
 
 const examExample = () => {
-	// FIXME:
-	// 1. 이전버튼 2번이상 누르면 다음버튼 disabled 됨 				[]
 	const router = useRouter();
 	const [question, setQuestion] = useState([]);
 	const [lastKey, setLastKey] = useState('');

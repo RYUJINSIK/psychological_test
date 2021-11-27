@@ -84,7 +84,6 @@ const Result = () => {
 				},
 			)
 			.then(({ data }) => {
-				console.log(data.RESULT);
 				setExamResult(data.RESULT);
 			})
 			.catch((error) => {
@@ -102,14 +101,12 @@ const Result = () => {
 
 	useEffect(() => {
 		if (examResult.url !== undefined) {
-			console.log('in');
 			dataSetting();
 		}
 	}, [examResult]);
 
 	const dataSetting = async () => {
 		const seq = examResult.url.split('=')[1];
-		console.log(seq);
 
 		const { data } = await axios.get(
 			`https://www.career.go.kr/inspct/api/psycho/report?seq=${seq}`,
@@ -128,8 +125,6 @@ const Result = () => {
 
 		setResult(scoreResult);
 		const [value1, value2] = [scoreResult[0].num, scoreResult[1].num];
-		console.log(result);
-		console.log(value1, value2);
 
 		const jobList = await axios.get(
 			`https://inspct.career.go.kr/inspct/api/psycho/value/jobs?no1=${value1}&no2=${value2}`,
@@ -140,13 +135,11 @@ const Result = () => {
 
 		setJobResult(() => {
 			const jobObject = { 1: [], 2: [], 3: [], 4: [], 5: [] };
-			console.log(jobList.data);
 			jobList.data.forEach((nowArr) => {
 				jobObject[nowArr[2]].push(nowArr[1]);
 			});
 			return jobObject;
 		});
-		console.log(jobResult);
 		setMajorResult(() => {
 			const majorObject = {
 				0: [],
