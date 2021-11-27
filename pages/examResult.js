@@ -119,6 +119,14 @@ const Result = () => {
 			return { num: split_score[0], value: parseInt(split_score[1]) };
 		});
 
+		setChartData(() => {
+			let chartVal = { ...chartData };
+			chartVal.datasets[0].data = scoreResult.map((x) => {
+				return x.value;
+			});
+			return chartVal;
+		});
+
 		scoreResult.sort((a, b) => {
 			return b.value - a.value;
 		});
@@ -160,13 +168,6 @@ const Result = () => {
 			return majorObject;
 		});
 
-		setChartData(() => {
-			let chartVal = { ...chartData };
-			chartVal.datasets[0].data = scoreResult.map((x) => {
-				return x.value;
-			});
-			return chartVal;
-		});
 		setInit(true);
 	};
 

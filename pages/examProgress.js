@@ -63,7 +63,7 @@ const examExample = () => {
 	};
 
 	const onClickAnswer = useCallback(
-		(id, _key, e) => {
+		(id, _key) => {
 			setLastKey(`${id}_${_key}`);
 
 			setQuestion((question) =>
@@ -206,9 +206,7 @@ const examExample = () => {
 												data[`${data.qitemNo}_leftAnswer`] ? 'blue' : 'white'
 											}
 											size="small"
-											onClick={() =>
-												onClickAnswer(data.qitemNo, 'leftAnswer', event)
-											}
+											onClick={() => onClickAnswer(data.qitemNo, 'leftAnswer')}
 										>
 											{data.answer01} &nbsp;&nbsp;
 											<Popup
@@ -224,9 +222,7 @@ const examExample = () => {
 												data[`${data.qitemNo}_rightAnswer`] ? 'blue' : 'white'
 											}
 											size="small"
-											onClick={() =>
-												onClickAnswer(data.qitemNo, 'rightAnswer', event)
-											}
+											onClick={() => onClickAnswer(data.qitemNo, 'rightAnswer')}
 										>
 											{data.answer02} &nbsp;&nbsp;
 											<Popup
