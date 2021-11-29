@@ -29,11 +29,7 @@ const examExample = () => {
 	};
 
 	const confirmToggle = (e) => {
-		if (confirm === true) {
-			setConfirm(false);
-		} else {
-			setConfirm(true);
-		}
+		setConfirm(!confirm);
 	};
 	const onSubmitAction = (e) => {
 		router.push('/examProgress');

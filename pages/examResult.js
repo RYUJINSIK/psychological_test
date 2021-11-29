@@ -113,7 +113,7 @@ const Result = () => {
 		);
 
 		const score = data.result.wonScore.split(' ').filter((x) => x);
-
+		console.log(score);
 		const scoreResult = score.map((x) => {
 			const split_score = x.split('=');
 			return { num: split_score[0], value: parseInt(split_score[1]) };
@@ -281,66 +281,19 @@ const Result = () => {
 						</Table.Header>
 
 						<Table.Body>
-							{jobResult[1].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											중졸이하
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{jobResult[1].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{jobResult[2].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											고졸
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{jobResult[2].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{jobResult[3].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											전문대졸
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{jobResult[3].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{jobResult[4].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											대졸
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{jobResult[4].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{jobResult[5].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											대학원졸
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{jobResult[5].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
+							{Object.values(jobResult).map((result) => {
+								if (result.length === 0) return null;
+								return (
+									<Table.Row>
+										<Table.Cell>
+											<Label ribbon style={ribbon}>
+												예체능
+											</Label>
+										</Table.Cell>
+										<Table.Cell>{result.join(' ')}</Table.Cell>
+									</Table.Row>
+								);
+							})}
 						</Table.Body>
 					</Table>
 					<Table celled>
@@ -358,103 +311,19 @@ const Result = () => {
 						</Table.Header>
 
 						<Table.Body>
-							{majorResult[0].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											계열무관
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[0].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-
-							{majorResult[1].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											인문
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[1].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{majorResult[2].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											사회
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[2].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{majorResult[3].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											교육
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[3].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{majorResult[4].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											공학
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[4].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{majorResult[5].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											자연
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[5].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{majorResult[6].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											의학
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[6].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
-							{majorResult[7].length !== 0 ? (
-								<Table.Row>
-									<Table.Cell>
-										<Label ribbon style={ribbon}>
-											예체능
-										</Label>
-									</Table.Cell>
-									<Table.Cell>{majorResult[7].join(' ')}</Table.Cell>
-								</Table.Row>
-							) : (
-								``
-							)}
+							{Object.values(majorResult).map((result) => {
+								if (result.length === 0) return null;
+								return (
+									<Table.Row>
+										<Table.Cell>
+											<Label ribbon style={ribbon}>
+												예체능
+											</Label>
+										</Table.Cell>
+										<Table.Cell>{result.join(' ')}</Table.Cell>
+									</Table.Row>
+								);
+							})}
 						</Table.Body>
 					</Table>
 					<Button style={startBtnColor} animated onClick={onSubmitAction}>
