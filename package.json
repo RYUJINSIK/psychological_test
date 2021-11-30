@@ -1,0 +1,31 @@
+{
+	"name": "3_jinsik",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://kdt-gitlab.elice.io/003-part2-project-psychologicaltest/team1/3_jinsik.git",
+	"author": "it_jinsik@naver.com <it_jinsik@naver.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "next",
+		"build": "next build && next export",
+		"start": "next start"
+	},
+	"dependencies": {
+		"axios": "^0.24.0",
+		"bootstrap": "^5.1.3",
+		"bootswatch": "^5.1.3",
+		"chart.js": "^3.6.0",
+		"next": "^12.0.4",
+		"next-images": "^1.8.2",
+		"next-router": "^1.3.6",
+		"react": "^17.0.2",
+		"react-bootstrap": "^2.0.2",
+		"react-chartjs-2": "^4.0.0",
+		"react-dom": "^17.0.2",
+		"recharts": "^2.1.6",
+		"semantic-ui-css": "^2.4.1",
+		"semantic-ui-react": "^2.0.4",
+		"styled-components": "^5.3.3",
+		"yarn": "^1.22.17"
+	}
+}
